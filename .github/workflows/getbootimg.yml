@@ -11,7 +11,7 @@ on:
         ROM_URL:
           description: 'ROM directly link'
           required: true
-          default: "https://hugeota.d.miui.com/V14.0.2.0.TGACNXM/miui_THYME_V14.0.2.0.TGACNXM_7b4df32800_13.0.zip"
+          default: "https://bkt-sgp-miui-ota-update-alisgp.oss-ap-southeast-1.aliyuncs.com/OS1.0.3.0.TKHCNXM/miui_ALIOTH_OS1.0.3.0.TKHCNXM_eab81b6bf0_13.0.zip"
           type: string
         PARTITIONS:
           description: 'Partitions which you need to extract(Such as boot,vendor_dlkm,...,vendor_boot)'
