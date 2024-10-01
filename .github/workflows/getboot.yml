@@ -1,0 +1,51 @@
+name: Extract Boot from Android Firmware
+on:
+  workflow_dispatch:
+    inputs:
+      partitions:
+        description: 'Partitions to extract (default: boot)'
+        required: true
+        default: 'boot'
+      rom_url:
+        description: 'URL to Android ROM'
+        required: true
+
+jobs:
+  extract-boot:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the repo (if needed)
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Python 3.12
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    # Step 3: Install payload-dumper from GitHub
+    - name: Install payload-dumper
+      run: |
+        pip install git+https://github.com/5ec1cff/payload-dumper
+
+    # Step 4: Extract the desired partitions (default to boot if not specified)
+    - name: Extract partitions
+      run: |
+        payload_dumper --partitions ${{ github.event.inputs.partitions }} "${{ github.event.inputs.rom_url }}"
+
+    # Step 5: Compress the extracted img files
+    - name: Compress extracted files
+      run: |
+        cd output
+        for img_file in *.img; do
+          zip "${img_file%.img}.zip" "$img_file"
+        done
+
+    # Step 6: Upload the compressed files
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: extracted-images
+        path: output/*.zip
