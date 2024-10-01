@@ -48,10 +48,9 @@ jobs:
         name: extracted-images
         path: output/*.img
 
-    # Step 5, but Wetransfer
-    - name: Upload images to WeTransfer
+    # Step 5, but Wenshushu
+    - name: Upload images to Wenshushu
       if: github.event.inputs.UPLOAD_CONFIG == 'false'
       run: |
         curl -sL https://git.io/file-transfer | bash -s beta
-        ./transfer wet output/*.img
         ./transfer wss output/*.img
