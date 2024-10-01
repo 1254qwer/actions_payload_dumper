@@ -9,6 +9,11 @@ on:
       rom_url:
         description: 'URL to Android ROM'
         required: true
+      UPLOAD_CONFIG:
+          description: 'Upload Artifacts to Actions'
+          required: true
+          default: "true"
+          type: boolean
 
 jobs:
   extract-boot:
@@ -37,7 +42,15 @@ jobs:
 
     # Step 5: Upload the compressed files
     - name: Upload artifacts
+      if: github.event.inputs.UPLOAD_CONFIG == 'true'
       uses: actions/upload-artifact@v3
       with:
         name: extracted-images
         path: output/*.img
+
+    # Step 5, but Wetransfer
+    - name: Upload images to WeTransfer
+      if: github.event.inputs.UPLOAD_CONFIG == 'false'
+      run: |
+        curl -sL https://git.io/file-transfer | sh
+        ./transfer wet output/*.img
