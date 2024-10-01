@@ -1,11 +1,11 @@
-# actions_android_images_payload_dumper
-利用Github Actions云端解包payload.bin中的boot.img及其它分区镜像
+# actions_payload_dumper
+利用Github Actions云端解包payload.bin中的boot.img或其它分区镜像
 
 
-## 简介 ##
-这是一个利用github actions云端自动化提取刷机包payload.bin中的boot.img及其它分区镜像的脚本。
+## 简介
+这是一个利用github actions云端自动化提取刷机包payload.bin中的boot.img或其它分区镜像的脚本。
 
-# 使用
+## 使用
 
 我测试的是Redmi K70U的，其他相同情况的同理。
 
@@ -16,6 +16,8 @@
 `Run workflow`中可以更换ROM链接，还可以设定需要提取的分区，请用英文逗号`,`将各分区隔开，如`boot,vendor_boot,vendor_dlkm`
 
 工作流运行完毕后，如果你启用了`Upload Artifacts to Actions`，在Actions菜单点击刚完成的工作流的summary，Artifacts里的`extracted-images`就是产物，点击下载即可。否则请在`extract-boot`-`Upload images to Wenshushu`中寻找Download link:xxx即下载地址。
+
+## 致谢
 
 本项目原依赖来自：
 
