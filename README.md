@@ -17,10 +17,14 @@
 
 工作流运行完毕后，如果你启用了`Upload Artifacts to Actions`，在Actions菜单点击刚完成的工作流的summary，Artifacts里的`extracted-images`就是产物，点击下载即可。否则请在`extract-boot`-`Upload images to Wenshushu`中寻找Download link:xxx即下载地址。
 
-本项目原依赖来自：https://github.com/vm03/payload_dumper
+本项目原依赖来自：
+
+https://github.com/vm03/payload_dumper
+
 https://github.com/ssut/payload-dumper-go
 
 现依赖自：
+
 https://github.com/5ec1cff/payload-dumper
 
 感谢。
