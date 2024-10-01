@@ -35,17 +35,9 @@ jobs:
       run: |
         payload_dumper --partitions ${{ github.event.inputs.partitions }} "${{ github.event.inputs.rom_url }}"
 
-    # Step 5: Compress the extracted img files
-    - name: Compress extracted files
-      run: |
-        cd output
-        for img_file in *.img; do
-          zip "${img_file%.img}.zip" "$img_file"
-        done
-
-    # Step 6: Upload the compressed files
+    # Step 5: Upload the compressed files
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
         name: extracted-images
-        path: output/*.zip
+        path: output/*.img
