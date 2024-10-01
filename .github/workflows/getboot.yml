@@ -52,5 +52,6 @@ jobs:
     - name: Upload images to WeTransfer
       if: github.event.inputs.UPLOAD_CONFIG == 'false'
       run: |
-        curl -sL https://git.io/file-transfer | sh
+        curl -sL https://git.io/file-transfer | bash -s beta
         ./transfer wet output/*.img
+        ./transfer wss output/*.img
